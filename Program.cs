@@ -2,7 +2,7 @@
 
 namespace GIT에_올릴_업무코드
 {
-    class Program
+    class LinkedList구현
     {
         static void Main(string[] args)
         {
