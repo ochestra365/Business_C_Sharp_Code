@@ -2,24 +2,50 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GIT에_올릴_업무코드
+namespace GeneralMethod
 {
+    class MyClass<T>
+    {
+        private T[] arr;
+        private int count = 0;
+
+        public MyClass(int length)
+        {
+            arr = new T[length];
+            count = length;
+        }
+        public void Insert(params T[] args)
+        {
+            for (int i = 0; i < args.Length; i++) arr[i] = args[i];
+        }
+        public void Print()
+        {
+            foreach (T i in arr) Console.Write(i + " ");
+            Console.WriteLine();
+        }
+        public T AddAll()
+        {
+            T sum = default(T);
+            foreach (T item in arr) sum = sum + (dynamic)item;
+            return sum;
+        }
+    }
     class GeneralMethod
     {
         static void Main(string[] args)
         {
-            int[] a = { 1, 2, 3 };
-            double[] d = { 0.1, 0.2, 0.3 };
-            string[] s = { "tiger", "lion", "zebra" };
+            MyClass<int> a = new MyClass<int>(10);
+            MyClass<string> s = new MyClass<string>(5);
 
-            PrintArray<int>(a);
-            PrintArray<double>(d);
-            PrintArray<string>(s);
+            a.Insert(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+            s.Insert("Tiger", "Lion", "Zebra", "Monkey", "Cow");
+
+            a.Print();
+            s.Print();
+
+            Console.WriteLine(a.AddAll());
+            Console.WriteLine(s.AddAll());
         }
-        private static void PrintArray<T>(T[] a)
-        {
-            foreach (var item in a) Console.Write("{0,8}", item);
-            Console.WriteLine();
-        }
+       
     }
 }
